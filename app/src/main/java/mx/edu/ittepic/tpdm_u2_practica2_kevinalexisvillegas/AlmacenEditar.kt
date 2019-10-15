@@ -24,6 +24,11 @@ class AlmacenEditar : AppCompatActivity() {
         campoPrecio=findViewById(R.id.campoPrecio)
         botonInsertar=findViewById(R.id.botonInsertar)
         pedirID()
+
+        botonInsertar?.setOnClickListener {
+            actualiza()
+
+        }
     }
     fun pedirID() {
         var campo = EditText(this)
@@ -80,5 +85,44 @@ class AlmacenEditar : AppCompatActivity() {
             .setMessage(b)
             .setPositiveButton("OK")
             { dialogInterface, i ->}.show()
+    }
+
+    fun actualiza(){
+        try {
+            var transaccion = Basedatos.writableDatabase
+            var SQL = "UPDATE ALMACEN SET PRODUCTO='CAMPOPRODUCTO', CANTIDAD='CAMPOCANTIDAD', PRECIO='CAMPOPRECIO' WHERE IDALMACEN=IDALMACEN "
+
+            if (validarCampos() == false) {
+                mensaje("ERROR", "AL PARECER HAY UN CAMPO DE TEXTO VACIO")
+
+            } else {
+
+                SQL = SQL.replace("CAMPOPRODUCTO", campoProducto?.text.toString())
+                SQL = SQL.replace("CAMPOCANTIDAD", campoCantidad?.text.toString())
+                SQL = SQL.replace("CAMPOPRECIO", campoPrecio?.text.toString())
+
+
+                transaccion.execSQL(SQL)
+                transaccion.close()//CIERRA LA TRANSACCION
+                limpiar()
+                mensaje("EXITO", "SE INSERTO CORRECTAMENTE")
+
+            }
+        } catch (err: SQLiteException) {
+            mensaje("Error", "NO SE PUDO INSERTAR, TAL VEZ ID YA EXISTE")
+        }
+
+    }
+    fun validarCampos(): Boolean {
+        if (campoPrecio?.text.toString().isEmpty() || campoProducto?.text.toString().isEmpty() || campoCantidad?.text.toString().isEmpty()) {
+            return false
+        } else {
+            return true
+        }
+    }
+    fun limpiar() {
+        campoPrecio?.setText("")
+        campoProducto?.setText("")
+        campoCantidad?.setText("")
     }
 }

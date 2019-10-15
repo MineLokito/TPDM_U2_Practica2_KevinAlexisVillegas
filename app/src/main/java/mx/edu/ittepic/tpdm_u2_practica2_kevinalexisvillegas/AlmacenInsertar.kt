@@ -58,7 +58,7 @@ class AlmacenInsertar : AppCompatActivity() {
             var trans = Basedatos.writableDatabase
             var SQL = "INSERT INTO ALMACEN VALUES(NULL,'PRODUCTO','CANTIDAD','PRECIO')"
             if (validaCampos() == false) {
-                mensaje("Error!", "Existe algun campo vacio (\"Descripción\" y/o \"Fecha de creación\")")
+                mensaje("Error!", "Existe algun campo vacio ")
                 return
             }
 

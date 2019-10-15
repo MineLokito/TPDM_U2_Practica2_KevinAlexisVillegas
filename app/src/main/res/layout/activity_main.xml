@@ -114,19 +114,23 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Detalle Compra"/>
+            android:text="Detalle Compra"
+            android:id="@+id/DeCompra"/>
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Cliente"/>
+            android:text="Cliente"
+            android:id="@+id/Cliente"/>
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Compra"/>
+            android:text="Compra"
+            android:id="@+id/Compra"/>
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="almacen"/>
+            android:text="EMPRESA"
+            android:id="@+id/Empresa"/>
 
 
 
